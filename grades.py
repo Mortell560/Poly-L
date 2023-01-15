@@ -6,7 +6,7 @@ import datetime
 months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
 
 
-def getGrades(LOGIN, PASSWORD):
+def getGrades(LOGIN, PASSWORD) -> list[dict]:
     with requests.Session() as s:
         baseUrl = 'https://oasis.polytech.universite-paris-saclay.fr/'
         url1 = baseUrl + "prod/bo/core/Router/Ajax/ajax.php?targetProject=oasis_polytech_paris&route=BO\\Connection\\User::login"

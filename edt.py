@@ -1,7 +1,7 @@
 import requests
 from pprint import pprint
 import datetime
-from ics import Calendar
+from ics import Calendar, Event
 import pytz
 utc=pytz.UTC
 
@@ -17,12 +17,14 @@ def getEDT(id: int = 2302, dateS: datetime.date = datetime.datetime.today(), dat
     #    pprint(event.description.strip()[:-30])
     return c
 
-def nextClass(c: Calendar, d: datetime.datetime = datetime.datetime.utcnow()):
+def nextClass(c: Calendar, d: datetime.datetime = datetime.datetime.utcnow()) -> Event:
     d = utc.localize(d)
     temp = []
     for event in c.events:
         if event.begin.datetime >= d:
             temp.append(event)
+    if len(temp) == 0:
+        return None
     return min(temp, key=lambda x : x.begin.datetime)
 
 def findCurrentlyOccupiedRooms(bats: list[str] = ["620"], d: datetime.datetime = datetime.datetime.utcnow()) -> list[str]:

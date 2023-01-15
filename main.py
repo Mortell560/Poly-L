@@ -119,6 +119,7 @@ async def edt_newsletter():
             )
             pprint.pprint(embed.to_dict())
             await c.send(embed=embed)
+            #TODO: When a course is deleted, it is not 'detected'
 
 
 def init_newsletter():
